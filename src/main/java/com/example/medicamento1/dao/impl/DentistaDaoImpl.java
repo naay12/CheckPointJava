@@ -4,15 +4,16 @@ import com.example.medicamento1.dao.ConfiguracaoJDBC;
 import com.example.medicamento1.dao.IdaoDentista;
 import com.example.medicamento1.model.DentistaModel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DentistaDaoImpl implements IdaoDentista<DentistaModel> {
     private ConfiguracaoJDBC configuracaoJDBC;
 
-    //ConfiguracaoJDBC configurationJDBC = new ConfiguracaoJDBC("org.h2.Driver", "jdbc:h2:~/Test;INIT=RUNSCRIPT FROM 'src/main/resources/createSQL.sql'","sa","" );
+
 
 
     public DentistaDaoImpl(ConfiguracaoJDBC configuracaoJDBC) {
@@ -68,6 +69,70 @@ public class DentistaDaoImpl implements IdaoDentista<DentistaModel> {
             e.printStackTrace();
         }
         return dentistaModel;
+    }
+
+    @Override
+    public Boolean deletar(Integer id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String delete = String.format("DELETE FROM DENTISTA WHERE id = '%s'",id);
+
+        try{
+            connection = configuracaoJDBC.conectarComBancoDeDados();
+            preparedStatement = connection.prepareStatement(delete);
+            preparedStatement.setInt(1,id);
+
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public List<DentistaModel> buscarTodos() {
+
+
+        Connection connection = configuracaoJDBC.conectarComBancoDeDados();
+        Statement statement = null;
+        String SelectAll = String.format("SELECT * FROM DENTISTA" );
+        List<DentistaModel> dentistas = new ArrayList<>();
+
+        try{
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SelectAll);
+            while(resultSet.next()) {
+                 int dentistaId =  resultSet.getInt("ID");
+                String nomeDentista = resultSet.getString("NOME");
+                String emailDentista = resultSet.getString("EMAIL");
+                String NumMatricula = resultSet.getString("NUMMATRICULA");
+                int atendeConvenio =resultSet.getInt("ATENDECONVENIO");
+
+                DentistaModel dentistaModel = new DentistaModel(dentistaId,nomeDentista,emailDentista,NumMatricula,atendeConvenio);
+                dentistas.add(dentistaModel);
+
+
+            }
+            statement.close();
+
+
+    } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return null;
+    }
+
+    @Override
+    public DentistaModel atualizar(DentistaModel dentistaModel) {
+        return null;
     }
 
 }

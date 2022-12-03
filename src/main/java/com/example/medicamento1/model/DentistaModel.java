@@ -1,12 +1,26 @@
 package com.example.medicamento1.model;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "Dentista")
 public class DentistaModel {
 
+    @Id
+    @SequenceGenerator(name = "dentista_sequence" , sequenceName = "dentista_sequence" , allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "dentista_sequence")
     private Integer id;
     private String nome;
     private String email;
     private String numMatricula;
     private int atendeConvenio;
+
+    @OneToMany(mappedBy = "dentistaModel" , fetch = FetchType.LAZY)
+    private Set<PacienteModel> pacienteModelsModels = new HashSet<>();
+
+
 
     public DentistaModel(Integer id, String nome, String email, String numMatricula, int atendeConvenio) {
         this.id = id;
