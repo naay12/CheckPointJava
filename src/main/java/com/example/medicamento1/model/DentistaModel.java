@@ -1,6 +1,8 @@
 package com.example.medicamento1.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ public class DentistaModel {
     private int atendeConvenio;
 
     @OneToMany(mappedBy = "dentistaModel" , fetch = FetchType.LAZY)
-    private Set<PacienteModel> pacienteModelsModels = new HashSet<>();
+    private Set<ConsultasModel> consultasModels = new HashSet<>();
 
 
 

@@ -1,7 +1,12 @@
 package com.example.medicamento1.model;
 
-import javax.persistence.*;
+
+
+import jakarta.persistence.*;
+
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Paciente")
@@ -17,9 +22,12 @@ public class PacienteModel {
     private String RG;
     private Date dataAlta;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "dentista_id")
-    private DentistaModel dentistaModel;
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "pacienteModel" , fetch = FetchType.LAZY)
+    private Set<ConsultasModel> consultasModels = new HashSet<>();
+
+    // @JoinColumn(name = "dentista_id")
+   // private DentistaModel dentistaModel;
 
     public PacienteModel() {
 

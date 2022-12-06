@@ -26,12 +26,12 @@ public class DentistaDaoImpl implements IdaoDentista<DentistaModel> {
 
         Statement statement = null;
 
-        String SQLINSERT = String.format("INSERT INTO DENTISTA (NOME, EMAIL, NUMMATRICULA, ATENDECONVENIO) VALUES('%s','%s','%s','%S')",
-                dentistaModel.getNome(), dentistaModel.getEmail() ,dentistaModel.getNumMatricula() , dentistaModel.getAtendeConvenio());
+        String SQLINSERT = String.format("INSERT INTO DENTISTA (ATENDE_CONVENIO, EMAIL , NOME,  NUM_MATRICULA, ) VALUES( '%s','%s','%s','%s')",
+                dentistaModel.getAtendeConvenio() ,dentistaModel.getEmail(), dentistaModel.getNome() ,dentistaModel.getNumMatricula()) ;
 
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(SQLINSERT,Statement.RETURN_GENERATED_KEYS);
+            statement.executeUpdate(SQLINSERT ,Statement.RETURN_GENERATED_KEYS);
             //logger.info("conexao aberta");
             ResultSet keys = statement.getGeneratedKeys();
             if (keys.next())
