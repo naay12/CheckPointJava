@@ -26,8 +26,8 @@ public class DentistaDaoImpl implements IdaoDentista<DentistaModel> {
 
         Statement statement = null;
 
-        String SQLINSERT = String.format("INSERT INTO DENTISTA (ATENDE_CONVENIO, EMAIL , NOME,  NUM_MATRICULA, ) VALUES( '%s','%s','%s','%s')",
-                dentistaModel.getAtendeConvenio() ,dentistaModel.getEmail(), dentistaModel.getNome() ,dentistaModel.getNumMatricula()) ;
+        String SQLINSERT = String.format("INSERT INTO DENTISTA (ID ,ATENDE_CONVENIO, EMAIL , NOME,  NUM_MATRICULA) VALUES( '%s','%s','%s','%s','%s')" ,
+                dentistaModel.getId(), dentistaModel.getAtendeConvenio() ,dentistaModel.getEmail(), dentistaModel.getNome() ,dentistaModel.getNumMatricula()) ;
 
         try {
             statement = connection.createStatement();
