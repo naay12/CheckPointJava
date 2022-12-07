@@ -1,5 +1,12 @@
-# Check Point Java `{`Equipe 5`}` 
-Projeto integrador de backend do curso Certified Tech Developer da Digital House.
+# Check Point Java 
+#### Projeto integrador metéria backend do curso Certified Tech Developer da Digital House.
+
+##  Integrantes da equipe EQUIPE 5
+> * Natali de Souza <br>
+> * Anderson Silva <br>
+> * Adriel Reis <br>
+> * Wagner Morais
+
 
 # Postman
 ## Cadastro de dentista
