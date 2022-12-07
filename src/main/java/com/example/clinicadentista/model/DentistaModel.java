@@ -1,4 +1,4 @@
-package com.example.medicamento1.model;
+package com.example.clinicadentista.model;
 
 import jakarta.persistence.*;
 

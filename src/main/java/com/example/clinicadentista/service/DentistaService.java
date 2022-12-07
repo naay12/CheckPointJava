@@ -1,7 +1,7 @@
-package com.example.medicamento1.service;
+package com.example.clinicadentista.service;
 
-import com.example.medicamento1.model.DentistaModel;
-import com.example.medicamento1.repository.DentistaRepository;
+import com.example.clinicadentista.model.DentistaModel;
+import com.example.clinicadentista.repository.DentistaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +13,7 @@ public class DentistaService {
 
 
     public DentistaService(DentistaRepository dentistaRepository) {
+
         this.dentistaRepository = dentistaRepository;
     }
 

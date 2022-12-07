@@ -1,9 +1,7 @@
-package com.example.medicamento1.controller;
-
-
-import com.example.medicamento1.Exception.ResourceNotFoundException;
-import com.example.medicamento1.model.DentistaModel;
-import com.example.medicamento1.service.DentistaService;
+package com.example.clinicadentista.controller;
+import com.example.clinicadentista.Exception.ResourceNotFoundException;
+import com.example.clinicadentista.model.DentistaModel;
+import com.example.clinicadentista.service.DentistaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

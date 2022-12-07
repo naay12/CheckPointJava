@@ -1,6 +1,6 @@
-package com.example.medicamento1.repository;
+package com.example.clinicadentista.repository;
 
-import com.example.medicamento1.model.DentistaModel;
+import com.example.clinicadentista.model.DentistaModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
