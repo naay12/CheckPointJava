@@ -1,4 +1,4 @@
-package com.example.medicamento1.dao;
+/*package com.example.medicamento1.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,4 +39,4 @@ public class ConfiguracaoJDBC {
         }
         return connection;
     }
-}
+}*/

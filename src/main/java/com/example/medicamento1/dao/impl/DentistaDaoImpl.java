@@ -1,3 +1,4 @@
+/*
 package com.example.medicamento1.dao.impl;
 
 import com.example.medicamento1.dao.ConfiguracaoJDBC;
@@ -136,6 +137,7 @@ public class DentistaDaoImpl implements IdaoDentista<DentistaModel> {
     }
 
 }
+*/
 
 
 

@@ -1,36 +1,38 @@
 package com.example.medicamento1.service;
 
-import com.example.medicamento1.dao.IdaoDentista;
 import com.example.medicamento1.model.DentistaModel;
+import com.example.medicamento1.repository.DentistaRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class DentistaService {
 
-    private IdaoDentista<DentistaModel> dentistaModelIdaoDentista;
+    private final DentistaRepository dentistaRepository;
 
-    public DentistaService(IdaoDentista<DentistaModel> dentistaModelIdaoDentista) {
-        this.dentistaModelIdaoDentista = dentistaModelIdaoDentista;
+
+    public DentistaService(DentistaRepository dentistaRepository) {
+        this.dentistaRepository = dentistaRepository;
     }
 
     public DentistaModel salvar(DentistaModel dentistaModel){
 
-        return dentistaModelIdaoDentista.salvar(dentistaModel);
+        return dentistaRepository.save(dentistaModel);
     }
 
     public DentistaModel buscarPorId(Integer id){
-        return dentistaModelIdaoDentista.buscarPorId(id);
+        return dentistaRepository.findById(id).get();
     }
 
     public List<DentistaModel> buscarTodos(){
-        return dentistaModelIdaoDentista.buscarTodos();
+        return dentistaRepository.findAll();
     }
 
 
-    public Boolean deletar(Integer id){
+    public void deletar(Integer id){
 
-        return dentistaModelIdaoDentista.deletar(id);
+        dentistaRepository.deleteById(id);
     }
 
 }

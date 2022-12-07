@@ -1,4 +1,4 @@
-package com.example.medicamento1.dao;
+/*package com.example.medicamento1.dao;
 
 import java.util.List;
 
@@ -11,4 +11,4 @@ public interface IdaoDentista<T> {
 
     List<T> buscarTodos();
     T atualizar(T t);
-}
+}*/

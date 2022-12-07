@@ -1,11 +1,9 @@
 package com.example.medicamento1.controller;
 
 
-import com.example.medicamento1.dao.ConfiguracaoJDBC;
-import com.example.medicamento1.dao.impl.DentistaDaoImpl;
+import com.example.medicamento1.Exception.ResourceNotFoundException;
 import com.example.medicamento1.model.DentistaModel;
 import com.example.medicamento1.service.DentistaService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,33 +13,42 @@ import java.util.List;
 @RequestMapping("/dentistas")
 public class DentistaController {
 
-    private DentistaService dentistaService = new DentistaService(new DentistaDaoImpl(new ConfiguracaoJDBC()));
+    private final DentistaService dentistaService ;
+
+    public DentistaController(DentistaService dentistaService) {
+        this.dentistaService = dentistaService;
+    }
 
     @PostMapping("/salvar")
-    public DentistaModel salvar(@RequestBody DentistaModel dentistaModel){
-        return dentistaService.salvar(dentistaModel);
+    public ResponseEntity<DentistaModel> salvar(@RequestBody DentistaModel dentistaModel){
+        return ResponseEntity.ok(dentistaService.salvar(dentistaModel));
 
     }
 
     @GetMapping("/buscar")
     public List<DentistaModel> listarTodos(){
+
         return dentistaService.buscarTodos();
     }
 
     @GetMapping("/{id}")
-    public DentistaModel buscarPorId(@PathVariable Integer id){
-        return dentistaService.buscarPorId(id);
+    public ResponseEntity<DentistaModel>  buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException{
+        try {
+            return ResponseEntity.ok(dentistaService.buscarPorId(id));
+        }catch (Exception e){
+            throw new ResourceNotFoundException("Não encontrado");
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletar(@PathVariable Integer id){
+    public  ResponseEntity deletar(@PathVariable Integer id) throws ResourceNotFoundException{
         ResponseEntity responseEntity = null;
 
-        if(dentistaService.deletar(id))
-            responseEntity = ResponseEntity.status(HttpStatus.OK).build();
-        else
-            responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        return responseEntity;
+        try{
+            dentistaService.deletar(id);
+            return ResponseEntity.ok("Deletado");
+        }catch (Exception e){
+            throw new ResourceNotFoundException("Não encontrado");
+        }
     }
 }
