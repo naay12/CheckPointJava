@@ -3,6 +3,8 @@ package com.projectodonto.checkpointjava.controller;
 import com.projectodonto.checkpointjava.model.Consulta;
 import com.projectodonto.checkpointjava.service.ConsultaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class ConsultaController {
     @Autowired
     ConsultaService service;
 
+    @Operation(summary = "Consulta registros salvos")
     @PostMapping
     public ResponseEntity salvar(@RequestBody Consulta consulta) throws SQLException {
         return new ResponseEntity(service.salvar(consulta), HttpStatus.OK);

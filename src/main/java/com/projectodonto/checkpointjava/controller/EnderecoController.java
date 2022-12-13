@@ -4,6 +4,8 @@ import com.projectodonto.checkpointjava.model.Endereco;
 import com.projectodonto.checkpointjava.model.dto.EnderecoDTO;
 import com.projectodonto.checkpointjava.service.EnderecoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class EnderecoController {
     @Autowired
     EnderecoService service;
+
+    @Operation
     @PostMapping
     public ResponseEntity salvarEndereco(@RequestBody Endereco endereco) throws SQLException {
         return new  ResponseEntity(service.salvar(endereco),HttpStatus.OK) ;

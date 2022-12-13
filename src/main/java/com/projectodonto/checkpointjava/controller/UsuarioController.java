@@ -2,6 +2,8 @@ package com.projectodonto.checkpointjava.controller;
 
 import com.projectodonto.checkpointjava.model.Usuario;
 import com.projectodonto.checkpointjava.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ public class UsuarioController {
     @Autowired
     UsuarioService service;
 
+    @Operation(summary = "Cadastrando novo usuário")
     @PostMapping
     public ResponseEntity salvarUsuario(@RequestBody Usuario usuario) throws SQLException {
         return new ResponseEntity(service.salvar(usuario), HttpStatus.OK);

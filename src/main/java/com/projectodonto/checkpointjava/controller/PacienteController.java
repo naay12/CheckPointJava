@@ -3,6 +3,8 @@ package com.projectodonto.checkpointjava.controller;
 import com.projectodonto.checkpointjava.service.PacienteService;
 import com.projectodonto.checkpointjava.model.Paciente;
 import com.projectodonto.checkpointjava.exception.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class PacienteController {
     @Autowired
     PacienteService service;
 
+    @Operation(summary = "Cadastrar um novo paciente")
     @PostMapping
     public ResponseEntity salvarPaciente(@RequestBody Paciente paciente) {
         return new ResponseEntity(service.salvar(paciente),HttpStatus.OK);
