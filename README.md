@@ -8,6 +8,7 @@
 > * Wagner Morais
 > * Sabrina Augusto
 
+TRELLO: https://trello.com/b/vDInT6nC/projeto-integrador
 
 # Postman
 ## Cadastro de dentista
