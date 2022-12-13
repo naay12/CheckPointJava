@@ -4,6 +4,8 @@ import com.projectodonto.checkpointjava.service.DentistaService;
 import com.projectodonto.checkpointjava.model.Dentista;
 import com.projectodonto.checkpointjava.model.dto.DentistaDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/dentista")
 public class DentistaController {
@@ -19,6 +22,7 @@ public class DentistaController {
     @Autowired
     DentistaService service;
 
+    @Operation(summary = "Cadastra um novo dentista")
     @PostMapping
     public ResponseEntity salvarDentista(@RequestBody Dentista dentista) {
         return new ResponseEntity(service.salvar(dentista), HttpStatus.OK);
